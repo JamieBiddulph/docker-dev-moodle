@@ -6,7 +6,7 @@ $CFG = new stdClass();
 
 $CFG->dbtype    = 'mysqli';
 $CFG->dblibrary = 'native';
-$CFG->dbhost    = 'mysql39';
+$CFG->dbhost    = 'mysql38';
 $CFG->dbname    = 'moodle';
 $CFG->dbuser    = 'root';
 $CFG->dbpass    = 'mypassword';
@@ -18,7 +18,7 @@ $CFG->dboptions = array (
   'dbcollation' => 'utf8mb4_general_ci',
 );
 
-$CFG->wwwroot   = 'http://localhost:8039';
+$CFG->wwwroot   = 'http://localhost:8038';
 $CFG->dataroot  = '/var/www/moodledata';
 $CFG->admin     = 'admin';
 

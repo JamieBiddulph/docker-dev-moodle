@@ -19,12 +19,13 @@ services:
             - "8039:80"
         networks:
             - overlay
-        command: bash -c "a2dismod ssl && service apache2 restart && mkdir -p /var/www/moodledata && chmod 777 /var/www/moodledata && chown www-data:www-data /var/www/moodledata && tail -f /var/log/apache2/access.log"
+        command: bash -c "a2dismod ssl && service apache2 restart && mkdir -p /var/www/moodledata && chmod 777 /var/www/moodledata && chown www-data:www-data /var/www/moodledata && /etc/init.d/cron start && tail -f /var/log/apache2/access.log"
 
 
         volumes: 
         # include additional plugins here if needed
         - ./config.php:/var/www/html/config.php
+        - ./mod/hvp:/var/www/html/mod/hvp
 
     adminer:
         image: adminer

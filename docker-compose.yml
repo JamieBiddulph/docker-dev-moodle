@@ -19,7 +19,7 @@ services:
             - "8038:80"
         networks:
             - overlay
-        command: bash -c "a2dismod ssl && service apache2 restart && mkdir -p /var/www/moodledata && chmod 777 /var/www/moodledata && chown www-data:www-data /var/www/moodledata && /etc/init.d/cron start && tail -f /var/log/apache2/access.log"
+        command: bash -c "a2dismod ssl && service apache2 restart && mkdir -p /var/www/moodledata && chmod 777 /var/www/moodledata && chown www-data:www-data /var/www/moodledata && /etc/init.d/cron start && /etc/init.d/memcached start && tail -f /var/log/apache2/access.log"
 
 
         volumes: 

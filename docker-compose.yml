@@ -25,6 +25,7 @@ services:
         volumes: 
         # include additional plugins here if needed
         - ./config.php:/var/www/html/config.php
+        - ./course-backups:/var/www/moodledata/repository/course-backups
 
     adminer:
         image: adminer

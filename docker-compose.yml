@@ -25,7 +25,6 @@ services:
         volumes: 
         # include additional plugins here if needed
         - ./config.php:/var/www/html/config.php
-        - ./mod/hvp:/var/www/html/mod/hvp
 
     adminer:
         image: adminer

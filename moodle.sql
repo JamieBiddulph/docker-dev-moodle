@@ -1012,7 +1012,7 @@ CREATE TABLE `mdl_cache_flags` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPRESSED COMMENT='Cache of time-sensitive flags';
 
 INSERT INTO `mdl_cache_flags` (`id`, `flagtype`, `name`, `timemodified`, `value`, `expiry`) VALUES
-(1,	'userpreferenceschanged',	'2',	1598090641,	'1',	1598097841);
+(1,	'userpreferenceschanged',	'2',	1598096945,	'1',	1598104145);
 
 DROP TABLE IF EXISTS `mdl_capabilities`;
 CREATE TABLE `mdl_capabilities` (
@@ -6156,7 +6156,9 @@ INSERT INTO `mdl_config_plugins` (`id`, `plugin`, `name`, `value`) VALUES
 (1929,	'tinymce_moodleemoticon',	'requireemoticon',	'1'),
 (1930,	'tinymce_spellchecker',	'spellengine',	''),
 (1931,	'tinymce_spellchecker',	'spelllanguagelist',	'+English=en,Danish=da,Dutch=nl,Finnish=fi,French=fr,German=de,Italian=it,Polish=pl,Portuguese=pt,Spanish=es,Swedish=sv'),
-(1932,	'tool_mobile',	'apppolicy',	'');
+(1932,	'tool_mobile',	'apppolicy',	''),
+(1933,	'filesystem',	'enablecourseinstances',	'0'),
+(1934,	'filesystem',	'enableuserinstances',	'0');
 
 DROP TABLE IF EXISTS `mdl_context`;
 CREATE TABLE `mdl_context` (
@@ -10577,7 +10579,12 @@ INSERT INTO `mdl_logstore_standard_log` (`id`, `eventname`, `component`, `action
 (1083,	'\\tool_usertours\\event\\tour_started',	'tool_usertours',	'started',	'tour',	'tool_usertours_tours',	2,	'r',	2,	5,	30,	2,	2,	0,	2,	0,	'{\"pageurl\":\"http:\\/\\/localhost:8038\\/my\\/\"}',	1598090639,	'web',	'172.18.0.1',	NULL),
 (1084,	'\\tool_usertours\\event\\step_shown',	'tool_usertours',	'shown',	'step',	'tool_usertours_steps',	7,	'r',	2,	5,	30,	2,	2,	0,	2,	0,	'{\"pageurl\":\"http:\\/\\/localhost:8038\\/my\\/\",\"tourid\":2,\"stepindex\":0}',	1598090640,	'web',	'172.18.0.1',	NULL),
 (1085,	'\\tool_usertours\\event\\tour_ended',	'tool_usertours',	'ended',	'tour',	'tool_usertours_tours',	2,	'c',	2,	5,	30,	2,	2,	0,	2,	0,	'{\"pageurl\":\"http:\\/\\/localhost:8038\\/my\\/\",\"stepid\":7,\"stepindex\":0}',	1598090641,	'web',	'172.18.0.1',	NULL),
-(1086,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	2,	1,	NULL,	0,	'null',	1598090641,	'web',	'172.18.0.1',	NULL);
+(1086,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	2,	1,	NULL,	0,	'null',	1598090641,	'web',	'172.18.0.1',	NULL),
+(1087,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1598096938,	'web',	'172.22.0.1',	NULL),
+(1088,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1598096939,	'web',	'172.22.0.1',	NULL),
+(1089,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"username\":\"admin\"}',	1598096945,	'web',	'172.22.0.1',	NULL),
+(1090,	'\\core\\event\\dashboard_viewed',	'core',	'viewed',	'dashboard',	NULL,	NULL,	'r',	0,	5,	30,	2,	2,	0,	2,	0,	'null',	1598096945,	'web',	'172.22.0.1',	NULL),
+(1091,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	2,	1,	NULL,	0,	'null',	1598096969,	'web',	'172.22.0.1',	NULL);
 
 DROP TABLE IF EXISTS `mdl_log_display`;
 CREATE TABLE `mdl_log_display` (
@@ -12656,7 +12663,8 @@ INSERT INTO `mdl_repository` (`id`, `type`, `visible`, `sortorder`) VALUES
 (4,	'upload',	1,	4),
 (5,	'url',	1,	5),
 (6,	'user',	1,	6),
-(7,	'wikimedia',	1,	7);
+(7,	'wikimedia',	1,	7),
+(8,	'filesystem',	1,	8);
 
 DROP TABLE IF EXISTS `mdl_repository_instances`;
 CREATE TABLE `mdl_repository_instances` (
@@ -12680,7 +12688,8 @@ INSERT INTO `mdl_repository_instances` (`id`, `name`, `typeid`, `userid`, `conte
 (4,	'',	4,	0,	1,	NULL,	NULL,	1598090570,	1598090570,	0),
 (5,	'',	5,	0,	1,	NULL,	NULL,	1598090570,	1598090570,	0),
 (6,	'',	6,	0,	1,	NULL,	NULL,	1598090570,	1598090570,	0),
-(7,	'',	7,	0,	1,	NULL,	NULL,	1598090570,	1598090570,	0);
+(7,	'',	7,	0,	1,	NULL,	NULL,	1598090570,	1598090570,	0),
+(8,	'course-backups',	8,	0,	1,	NULL,	NULL,	1598096968,	1598096968,	0);
 
 DROP TABLE IF EXISTS `mdl_repository_instance_config`;
 CREATE TABLE `mdl_repository_instance_config` (
@@ -12691,6 +12700,9 @@ CREATE TABLE `mdl_repository_instance_config` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPRESSED COMMENT='The config for intances';
 
+INSERT INTO `mdl_repository_instance_config` (`id`, `instanceid`, `name`, `value`) VALUES
+(1,	8,	'fs_path',	'course-backups'),
+(2,	8,	'relativefiles',	'0');
 
 DROP TABLE IF EXISTS `mdl_repository_onedrive_access`;
 CREATE TABLE `mdl_repository_onedrive_access` (
@@ -14568,7 +14580,8 @@ CREATE TABLE `mdl_sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPRESSED COMMENT='Database based session storage - now recommended';
 
 INSERT INTO `mdl_sessions` (`id`, `state`, `sid`, `userid`, `sessdata`, `timecreated`, `timemodified`, `firstip`, `lastip`) VALUES
-(2,	0,	'c386g8fm8p371eeevl7p1vofl6',	2,	NULL,	1598090591,	1598090639,	'172.18.0.1',	'172.18.0.1');
+(2,	0,	'c386g8fm8p371eeevl7p1vofl6',	2,	NULL,	1598090591,	1598090639,	'172.18.0.1',	'172.18.0.1'),
+(4,	0,	'ku6pt1urfqi18qb5fn5tlj9l1n',	2,	NULL,	1598096945,	1598096968,	'172.22.0.1',	'172.22.0.1');
 
 DROP TABLE IF EXISTS `mdl_stats_daily`;
 CREATE TABLE `mdl_stats_daily` (
@@ -16740,7 +16753,7 @@ CREATE TABLE `mdl_user` (
 
 INSERT INTO `mdl_user` (`id`, `auth`, `confirmed`, `policyagreed`, `deleted`, `suspended`, `mnethostid`, `username`, `password`, `idnumber`, `firstname`, `lastname`, `email`, `emailstop`, `icq`, `skype`, `yahoo`, `aim`, `msn`, `phone1`, `phone2`, `institution`, `department`, `address`, `city`, `country`, `lang`, `calendartype`, `theme`, `timezone`, `firstaccess`, `lastaccess`, `lastlogin`, `currentlogin`, `lastip`, `secret`, `picture`, `url`, `description`, `descriptionformat`, `mailformat`, `maildigest`, `maildisplay`, `autosubscribe`, `trackforums`, `timecreated`, `timemodified`, `trustbitmask`, `imagealt`, `lastnamephonetic`, `firstnamephonetic`, `middlename`, `alternatename`) VALUES
 (1,	'manual',	1,	0,	0,	0,	1,	'guest',	'$2y$10$HqK6meymPno.NM23hI4so.A4/T6C0jlydujUKHIfZ6jqO7wUNKavi',	'',	'Guest user',	' ',	'root@localhost',	0,	'',	'',	'',	'',	'',	'',	'',	'',	'',	'',	'',	'',	'en',	'gregorian',	'',	'99',	0,	0,	0,	0,	'',	'',	0,	'',	'This user is a special user that allows read-only access to some courses.',	1,	1,	0,	2,	1,	0,	0,	1598090549,	0,	NULL,	NULL,	NULL,	NULL,	NULL),
-(2,	'manual',	1,	0,	0,	0,	1,	'admin',	'$2y$10$E.C6NIGMjqhxkrR8JuWvruXxJAjiaisUHJMHrdkwShf4DU3GEbvGe',	'',	'Admin',	'User',	'null@moodledevs.com',	0,	'',	'',	'',	'',	'',	'',	'',	'',	'',	'',	'',	'',	'en',	'gregorian',	'',	'99',	1598090591,	1598090591,	0,	1598090591,	'172.18.0.1',	'',	0,	'',	'',	1,	1,	0,	1,	1,	0,	0,	1598090618,	0,	NULL,	'',	'',	'',	'');
+(2,	'manual',	1,	0,	0,	0,	1,	'admin',	'$2y$10$E.C6NIGMjqhxkrR8JuWvruXxJAjiaisUHJMHrdkwShf4DU3GEbvGe',	'',	'Admin',	'User',	'null@moodledevs.com',	0,	'',	'',	'',	'',	'',	'',	'',	'',	'',	'',	'',	'',	'en',	'gregorian',	'',	'99',	1598090591,	1598096945,	1598090591,	1598096945,	'172.22.0.1',	'',	0,	'',	'',	1,	1,	0,	1,	1,	0,	0,	1598090618,	0,	NULL,	'',	'',	'',	'');
 
 DROP TABLE IF EXISTS `mdl_user_devices`;
 CREATE TABLE `mdl_user_devices` (
@@ -17235,4 +17248,4 @@ CREATE TABLE `mdl_workshop_submissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPRESSED COMMENT='Info about the submission and the aggregation of the grade f';
 
 
--- 2020-08-22 10:04:13
+-- 2020-08-22 11:49:57

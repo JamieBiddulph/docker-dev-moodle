@@ -1,0 +1,40 @@
+version: '3.2'
+services: 
+    
+    mysql39:
+        image: mysql:5.7
+        command: --default-authentication-plugin=mysql_native_password
+        environment: 
+            MYSQL_ROOT_PASSWORD: mypassword
+            MYSQL_DATABASE: moodle
+        networks: 
+            - overlay
+        volumes: 
+        # sql file for import
+            - ./moodle.sql:/docker-entrypoint-initdb.d/moodle.sql
+
+    webapp39:
+        image: htmservice/moodle39:1.20200717
+        ports:
+            - "8039:80"
+        networks:
+            - overlay
+        command: bash -c "a2dismod ssl && service apache2 restart && mkdir -p /var/www/moodledata && chmod 777 /var/www/moodledata && chown www-data:www-data /var/www/moodledata && tail -f /var/log/apache2/access.log"
+
+
+        volumes: 
+        # include additional plugins here if needed
+        - ./config.php:/var/www/html/config.php
+
+    adminer:
+        image: adminer
+        ports:
+            - 8093:8080
+        networks: 
+            - overlay
+volumes: 
+    db-data:
+
+
+networks: 
+    overlay:
